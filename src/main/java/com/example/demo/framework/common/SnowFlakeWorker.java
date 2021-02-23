@@ -6,7 +6,7 @@ import java.net.UnknownHostException;
 /**
  * twitter的snowflake算法变种
  *
- * @author youfang
+ * @author luwl
  * @date 2020/2/27 15:42
  **/
 public class SnowFlakeWorker {

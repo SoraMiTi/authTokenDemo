@@ -4,7 +4,7 @@ import lombok.Data;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /**
- * @author youfang
+ * @author luwl
  */
 @Data
 public class WebToken implements AuthenticationToken {

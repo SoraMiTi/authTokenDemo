@@ -7,7 +7,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import java.util.Map;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/28]
  **/
 public class FastJsonUtil {
@@ -35,6 +35,7 @@ public class FastJsonUtil {
         return JSON.parseObject(jsonStr, new TypeReference<Map<String, String>>() {
         });
     }
+
     /**
      * 使用JSON的方式，将bean转换为map
      *

@@ -54,6 +54,7 @@ public class Result<T> implements Serializable {
     public static <T> Result<T> error(ErrorEnum<?> errorEnum) {
         return error(errorEnum.code(), errorEnum.message());
     }
+
     public static <T> Result<T> error(ErrorEnum<?> errorEnum, T data) {
         return error(errorEnum.code(), errorEnum.message(), data);
     }

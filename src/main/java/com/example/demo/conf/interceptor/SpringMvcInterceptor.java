@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/28]
  **/
 @Slf4j
@@ -31,12 +31,12 @@ public class SpringMvcInterceptor extends HandlerInterceptorAdapter {
         log.info("SpringMvcInterceptor ——>  remoteIP:{}, localIP: {}, 访问路径:{}", remoteIp, localIp, request.getRequestURI());
         String methodInfo = "";
         String apiRemark = "";
-        if (handler instanceof HandlerMethod){
+        if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = ((HandlerMethod) handler);
             methodInfo = handlerMethod.toString();
             Method method = handlerMethod.getMethod();
             ApiOperation annotation = method.getAnnotation(ApiOperation.class);
-            if (annotation != null){
+            if (annotation != null) {
                 apiRemark = annotation.value();
             }
         }

@@ -6,9 +6,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 /**
  * 异步任务管理器
  * AsyncManager.me().execute(() -> {
-    *                 执行方法 void();
-    *             });
- * @author youfang
+ * 执行方法 void();
+ * });
+ *
+ * @author luwl
  */
 public class AsyncManager {
     /**
@@ -33,7 +34,7 @@ public class AsyncManager {
      *
      * @param task 任务
      */
-    public void execute(Runnable task){
+    public void execute(Runnable task) {
         taskExecutor.execute(task);
     }
 

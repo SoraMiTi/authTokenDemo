@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/28]
  **/
 public final class DateUtil {
@@ -24,8 +24,10 @@ public final class DateUtil {
     public static final String DATE_DAY_MIN_TIME = " 00:00:00";
     public static final String DATE_DAY_MAX_TIME = " 23:59:59";
     public static final char[] UPPER_NUMBER = "〇一二三四五六七八九十".toCharArray();
-    /** 一小时的秒数 = 60*60 */
-    public static final long   ONE_HOUR_SECOND = 3600;
+    /**
+     * 一小时的秒数 = 60*60
+     */
+    public static final long ONE_HOUR_SECOND = 3600;
 
     private DateUtil() {
 
@@ -59,6 +61,7 @@ public final class DateUtil {
     public static String getDateShortFormat(Date date) {
         return getDateFormat(date, SHORT_DATE_FORMAT_PATTERN);
     }
+
     /**
      * 获取指定日期   yyyy-MM-dd格式
      *
@@ -77,6 +80,7 @@ public final class DateUtil {
     public static String getCurrentDateShortFormat() {
         return getDateFormat(new Date(), SHORT_DATE_FORMAT_PATTERN);
     }
+
     /**
      * 获得当前日期    yyyy-MM-dd格式
      *
@@ -119,12 +123,14 @@ public final class DateUtil {
 
     /**
      * 解析具体的时间
+     *
      * @param dateStr yyyy-MM-dd HH:mm:ss 类型
      * @return Date类型
      */
     public static Date parseSpecificDateTime(String dateStr) {
         return parseDate(dateStr, SPECIFIC_DATE_TIME_FORMAT_PATTERN);
     }
+
     /**
      * 解析日期     以指定格式
      *
@@ -168,10 +174,11 @@ public final class DateUtil {
     public static Date addMonth(Date date, int month) {
         return new DateTime(date).plusMonths(month).toDate();
     }
+
     /**
      * 向日期增加年数
      *
-     * @param date  日期
+     * @param date 日期
      * @param year 年
      * @return {@link Date}
      */
@@ -336,6 +343,7 @@ public final class DateUtil {
         return (endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR)) * 12
                 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
     }
+
     /**
      * 获取两个时间相差年份
      */
@@ -443,7 +451,7 @@ public final class DateUtil {
      * 获取指定日期的 yyyy-MM-dd 23:59:59 格式
      *
      * @param date 日期
-     * @return  yyyy-MM-dd 23:59:59
+     * @return yyyy-MM-dd 23:59:59
      */
     public static String getDateFormatMaxTime(Date date) {
         String dateFormat = getDateFormat(date, DEFAULT_DATE_FORMAT_PATTERN);
@@ -454,7 +462,7 @@ public final class DateUtil {
      * 获取指定日期的 yyyy-MM-dd 00:00:00 格式
      *
      * @param date 日期
-     * @return  yyyy-MM-dd 00:00:00
+     * @return yyyy-MM-dd 00:00:00
      */
     public static String getDateFormatMinTime(Date date) {
         String dateFormat = getDateFormat(date, DEFAULT_DATE_FORMAT_PATTERN);
@@ -550,6 +558,7 @@ public final class DateUtil {
         }
         return "";
     }
+
     /**
      * 根据月份获取中文月份名称
      *
@@ -563,6 +572,7 @@ public final class DateUtil {
         }
         return "";
     }
+
     /**
      * 根据月份获取中文月份名称
      *
@@ -596,14 +606,14 @@ public final class DateUtil {
      * @param timeEnd   时间结束  in format "hh:mm:ss"
      * @return boolean 如果时间格式不正确直接返回false
      */
-    public static boolean nowInTimeRange(String timeStart, String timeEnd){
-        if (RegexUtil.isTime(timeStart) && RegexUtil.isTime(timeEnd)){
+    public static boolean nowInTimeRange(String timeStart, String timeEnd) {
+        if (RegexUtil.isTime(timeStart) && RegexUtil.isTime(timeEnd)) {
             Date nowDate = new Date();
             String dateFormat = getDateFormat(nowDate, DEFAULT_DATE_FORMAT_PATTERN);
             Date startDate = parseSpecificDateTime(dateFormat + " " + timeStart);
             Date endDate = parseSpecificDateTime(dateFormat + " " + timeEnd);
             return nowDate.after(startDate) && nowDate.before(endDate);
-        }else {
+        } else {
             log.error("计算现在的时间在指定的时间范围内错误！{}-{}", timeStart, timeEnd);
         }
         return false;
@@ -612,30 +622,37 @@ public final class DateUtil {
     /**
      * 获取上月的第一天
      * if today - will 2020-09-21 14:14:14 -> 2020-09-01
+     *
      * @return {@link Date}
      */
     public static Date getPreviousMonthFirstDayToDate() {
         return LocalDateTime.now().minusMonths(1).dayOfMonth().withMinimumValue().toDate();
     }
+
     /**
      * 获取上月的最后一天
      * if today - will 2020-09-21 14:14:14 -> 2020-09-30
+     *
      * @return {@link Date}
      */
     public static Date getPreviousMonthLastDayToDate() {
         return LocalDateTime.now().minusMonths(1).dayOfMonth().withMaximumValue().toDate();
     }
+
     /**
      * 获取上月的第一天
      * if today - will 2020-09-21 14:14:14 -> 2020-09-01
+     *
      * @return {@link String}
      */
     public static String getPreviousMonthFirstDayToString() {
         return new DateTime(getPreviousMonthFirstDayToDate()).toString(DEFAULT_DATE_FORMAT_PATTERN);
     }
+
     /**
      * 获取上月的最后一天
      * if today - will 2020-09-21 14:14:14 -> 2020-09-30
+     *
      * @return {@link String}
      */
     public static String getPreviousMonthLastDayToString() {
@@ -646,72 +663,88 @@ public final class DateUtil {
     /**
      * 获取当月的第一天
      * if today - will 2020-09-21 14:14:14 -> 2020-09-01
+     *
      * @return {@link Date}
      */
     public static Date getCurrentMonthFirstDayToDate() {
         return LocalDateTime.now().dayOfMonth().withMinimumValue().toDate();
     }
+
     /**
      * 获取当月的最后一天
      * if today - will 2020-09-21 14:14:14 -> 2020-09-30
+     *
      * @return {@link Date}
      */
     public static Date getCurrentMonthLastDayToDate() {
         return LocalDateTime.now().dayOfMonth().withMaximumValue().toDate();
     }
+
     /**
      * 获取当月的第一天
      * if today - will 2020-09-21 14:14:14 -> 2020-09-01
+     *
      * @return {@link String}
      */
     public static String getCurrentMonthFirstDayToString() {
         return new DateTime(getCurrentMonthFirstDayToDate()).toString(DEFAULT_DATE_FORMAT_PATTERN);
     }
+
     /**
      * 获取当月的最后一天
      * if today - will 2020-09-21 14:14:14 -> 2020-09-30
+     *
      * @return {@link String}
      */
     public static String getCurrentMonthLastDayToString() {
         return new DateTime(getCurrentMonthLastDayToDate()).toString(DEFAULT_DATE_FORMAT_PATTERN);
     }
+
     /**
      * 获取下月的第一天
      * if today - will 2020-09-21 14:14:14 -> 2020-10-01
+     *
      * @return {@link Date}
      */
     public static Date getNextMonthFirstDayToDate() {
         return LocalDateTime.now().plusMonths(1).dayOfMonth().withMinimumValue().toDate();
     }
+
     /**
      * 获取下月的最后一天
      * if today - will 2020-09-21 14:14:14 -> 2020-10-31
+     *
      * @return {@link Date}
      */
     public static Date getNextMonthLastDayToDate() {
         return LocalDateTime.now().plusMonths(1).dayOfMonth().withMaximumValue().toDate();
     }
+
     /**
      * 获取下月的第一天
      * if today - will 2020-09-21 14:14:14 -> 2020-10-01
+     *
      * @return {@link String}
      */
     public static String getNextMonthFirstDayToString() {
         return new DateTime(getNextMonthFirstDayToDate()).toString(DEFAULT_DATE_FORMAT_PATTERN);
     }
+
     /**
      * 获取下月的最后一天
      * if today - will 2020-09-21 14:14:14 -> 2020-10-31
+     *
      * @return {@link String}
      */
     public static String getNextMonthLastDayToString() {
         return new DateTime(getNextMonthLastDayToDate()).toString(DEFAULT_DATE_FORMAT_PATTERN);
     }
+
     /**
      * 解析时间
      *
-     * @param date 指定日期
-     * @param timeStr   时间  in format "hh:mm:ss"
+     * @param date    指定日期
+     * @param timeStr 时间  in format "hh:mm:ss"
      * @return {@link Date}
      */
     public static Date parseTime(Date date, String timeStr) {
@@ -721,12 +754,13 @@ public final class DateUtil {
 
     /**
      * 范围内每个月的第一天集合
-     *  6.1 < 7.1 8.1 9.1 < 10.1 ==> 6789月份来算环比
+     * 6.1 < 7.1 8.1 9.1 < 10.1 ==> 6789月份来算环比
+     * <p>
+     * monthFirstDayInRange("2020-12-01", "2020-10-01") -> [2020-12-01]
+     * monthFirstDayInRange("2020-07-01", "2020-10-01") -> [2020-07-01, 2020-08-01, 2020-09-01]
      *
-     *  monthFirstDayInRange("2020-12-01", "2020-10-01") -> [2020-12-01]
-     *  monthFirstDayInRange("2020-07-01", "2020-10-01") -> [2020-07-01, 2020-08-01, 2020-09-01]
      * @param startDate 开始日期
-     * @param endDate 结束日期
+     * @param endDate   结束日期
      * @return [startDate, endDate) 左闭右开
      */
     public static List<String> monthFirstDayInRange(String startDate, String endDate) {
@@ -734,10 +768,10 @@ public final class DateUtil {
         DateTime startDateTime = DateTimeFormat.forPattern(DEFAULT_DATE_FORMAT_PATTERN).parseDateTime(startDate).dayOfMonth().withMinimumValue();
         DateTime endDateTime = DateTimeFormat.forPattern(DEFAULT_DATE_FORMAT_PATTERN).parseDateTime(endDate).dayOfMonth().withMinimumValue();
         stringList.add(startDateTime.toString(DEFAULT_DATE_FORMAT_PATTERN));
-        if (endDateTime.compareTo(startDateTime) < 0){
+        if (endDateTime.compareTo(startDateTime) < 0) {
             return stringList;
         }
-        while (startDateTime.plusMonths(1).compareTo(endDateTime) < 0){
+        while (startDateTime.plusMonths(1).compareTo(endDateTime) < 0) {
             startDateTime = startDateTime.plusMonths(1);
             stringList.add(startDateTime.toString(DEFAULT_DATE_FORMAT_PATTERN));
         }
@@ -748,6 +782,7 @@ public final class DateUtil {
      * 去年的今天
      * lastYearTodayMonth("2020-07-01") -> 2019-07-01
      * lastYearTodayMonth("2020-10-30") -> 2019-10-01
+     *
      * @param todayMonth 今天的月份
      * @return 去年的今天的月份
      */
@@ -764,21 +799,22 @@ public final class DateUtil {
      * @param time    时间
      * @return boolean
      */
-    public static boolean isLegalTime(String pattern, String time){
+    public static boolean isLegalTime(String pattern, String time) {
         try {
             DateTimeFormat.forPattern(pattern).parseDateTime(time);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
+
     /**
      * 是合法的时间
      *
-     * @param time   时间
+     * @param time 时间
      * @return boolean
      */
-    public static boolean isLegalTime(String time){
+    public static boolean isLegalTime(String time) {
         return isLegalTime(DEFAULT_TIME_FORMAT_PATTERN, time);
     }
 

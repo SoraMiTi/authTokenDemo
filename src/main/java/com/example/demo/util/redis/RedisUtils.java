@@ -40,7 +40,7 @@ public class RedisUtils {
      */
     public String get(String key) {
         String strValue = redisTemplate.opsForValue().get(key);
-        if (log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("接口调用详情：参数K： " + key);
         }
         return strValue;
@@ -55,7 +55,7 @@ public class RedisUtils {
      * @param unit    单位
      */
     public void set(String key, String value, Long timeout, TimeUnit unit) {
-        if (log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("{}|{}|{}|{}|{}", "set方法入参：", "键:" + key, "值:" + value, "存活时间:" + timeout, "时间单位:" + unit);
         }
         if (timeout != null) {
@@ -73,7 +73,7 @@ public class RedisUtils {
      * @param timeout 超时时间（单位秒）
      */
     public void set(String key, String value, long timeout) {
-        if (log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("接口调用详情：参数K-V： " + key + "=" + value);
         }
         redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.SECONDS);
@@ -86,7 +86,7 @@ public class RedisUtils {
      * @param value V
      */
     public void set(String key, String value) {
-        if (log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("接口调用详情：参数K-V： " + key + "=" + value);
         }
         redisTemplate.opsForValue().set(key, value);
@@ -118,7 +118,7 @@ public class RedisUtils {
      * @return v
      */
     public String listLeftPop(String key, long timeout) {
-        if (log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("接口调用详情：参数K： " + key);
         }
         return redisTemplate.opsForList().leftPop(key, timeout, TimeUnit.SECONDS);
@@ -617,7 +617,7 @@ public class RedisUtils {
     public List<ZSetItem> zSetRangeByScoreWithScores(String key, double min, double max, long offset, long count) {
         log.debug("接口调用详情：参数K： " + key + ",min:" + min + ",max:" + max + ",offset:" + offset + ",count:" + count);
         Set<TypedTuple<String>> sset = redisTemplate.opsForZSet().rangeByScoreWithScores(key, min, max, offset, count);
-        if (sset == null){
+        if (sset == null) {
             return new ArrayList<>();
         }
         return buildZsetList(sset);
@@ -638,7 +638,7 @@ public class RedisUtils {
             log.debug("接口调用详情：参数K： " + key);
         }
         Set<TypedTuple<String>> sset = redisTemplate.opsForZSet().reverseRangeWithScores(key, start, end);
-        if (sset == null){
+        if (sset == null) {
             return new ArrayList<>();
         }
         return buildZsetList(sset);
@@ -702,13 +702,12 @@ public class RedisUtils {
      * 列表的范围查询和删除
      * 注意： list的下标为0开始，start 开始为0 ， **end 是下标不是个数！**
      *
-     *
      * @param key   关键
      * @param start 开始
      * @param end   结束
      * @return {@link List<String>}
      */
-    public List<String> listRangeAndRemove(String key, long start, long end){
+    public List<String> listRangeAndRemove(String key, long start, long end) {
 
         SessionCallback<List<String>> sessionCallback = new SessionCallback<List<String>>() {
             @Override
@@ -746,7 +745,7 @@ public class RedisUtils {
     public Set<String> deleteKeysInPattern(String pattern) {
         log.debug("{}|{}|{}", "获取所有匹配pattern参数的Keys", "[KEYS pattern]:", pattern);
         Set<String> keySets = redisTemplate.keys(pattern);
-        if (CollectionUtils.isNotEmpty(keySets)){
+        if (CollectionUtils.isNotEmpty(keySets)) {
             redisTemplate.delete(keySets);
         }
         return keySets;
@@ -789,7 +788,7 @@ public class RedisUtils {
      * @param key key
      * @return {@link Long}
      */
-    public Long getExpire(String key){
+    public Long getExpire(String key) {
         return redisTemplate.getExpire(key);
     }
 
@@ -799,14 +798,16 @@ public class RedisUtils {
      * @param key key
      * @return {@link Long}
      */
-    public Long getExpire(String key, TimeUnit timeUnit){
+    public Long getExpire(String key, TimeUnit timeUnit) {
         return redisTemplate.getExpire(key, timeUnit);
     }
+
     /**
      * 自增 / 自减 并在初始时设置过期时间
      * 保证原子性：初始化值为1的时候必设置过期时间。
-     * @param key   key
-     * @param delta 1自增1 -1减少1
+     *
+     * @param key     key
+     * @param delta   1自增1 -1减少1
      * @param timeOut 超时时间（单位秒）
      * @return 执行 INCR 命令之后 key 的值。
      */
@@ -819,7 +820,7 @@ public class RedisUtils {
                 redisTemplate.opsForValue().increment(key, delta);
                 List<?> exec = operations.exec();
                 Long incValue = (Long) exec.get(0);
-                if (incValue != null && incValue == 1){
+                if (incValue != null && incValue == 1) {
                     redisTemplate.expire(key, timeOut, TimeUnit.SECONDS);
                 }
                 return incValue;
@@ -925,13 +926,13 @@ public class RedisUtils {
      * @return {@link String} lockId锁标识，解锁时使用标识解锁
      */
     public String lock(@NotNull String lockKey, long milliSecond) {
-        if (StringUtils.isEmpty(lockKey)){
+        if (StringUtils.isEmpty(lockKey)) {
             throw new ServiceException("lockKey must not be null .");
         }
         assert milliSecond > 1000;
         String lockId = UUID.randomUUID().toString();
         Boolean success = redisTemplate.opsForValue().setIfAbsent(LOCK_KEY_PREFIX + lockKey, lockId, milliSecond, TimeUnit.MILLISECONDS);
-        if (success != null && success){
+        if (success != null && success) {
             return lockId;
         }
         return null;
@@ -944,14 +945,14 @@ public class RedisUtils {
      * @param lockId  锁标识
      */
     public void unLock(@NotNull String lockKey, @NotNull String lockId) {
-        if (StringUtils.isEmpty(lockKey)){
+        if (StringUtils.isEmpty(lockKey)) {
             return;
         }
-        if (StringUtils.isEmpty(lockId)){
+        if (StringUtils.isEmpty(lockId)) {
             return;
         }
         String currentLockId = redisTemplate.opsForValue().get(LOCK_KEY_PREFIX + lockKey);
-        if (currentLockId != null && currentLockId.equals(lockId)){
+        if (currentLockId != null && currentLockId.equals(lockId)) {
             redisTemplate.delete(LOCK_KEY_PREFIX + lockKey);
         }
     }

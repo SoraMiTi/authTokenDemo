@@ -7,10 +7,13 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * MD5算法
- * @author youfang
+ *
+ * @author luwl
  */
 public class Md5Util {
-    /** 密码盐值 */
+    /**
+     * 密码盐值
+     */
     private static final String PASSWORD_SALT = "DEMO_";
 
     /**
@@ -110,8 +113,6 @@ public class Md5Util {
     public static String encryptPassword(String password) {
         return getMd5(PASSWORD_SALT + password);
     }
-
-
 
 
 }

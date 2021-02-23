@@ -17,7 +17,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020-4-20 下午 08:59]
  **/
 @Slf4j

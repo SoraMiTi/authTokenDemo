@@ -4,14 +4,19 @@ import com.example.demo.util.exception.ErrorEnum;
 
 /**
  * 统一错误码/错误信息
+ *
  * @author luwl
  * @version [1.0.0, 2020/7/9]
  **/
 public enum CommonErrorEnum implements ErrorEnum<CommonErrorEnum> {
-    /** 公共 */
+    /**
+     * 公共
+     */
     E_PARAM_ERROR(3000, "请求参数错误，请检查！"),
     E_NOT_FOUNT(3010, "请求接口不存在，请检查！"),
-    /** 登录 */
+    /**
+     * 登录
+     */
     E_UNAUTHENTICATED(4001, "未登录，请先登录！"),
     E_LOGIN_TIMEOUT(4001, "登录超时，请重新登录！"),
     E_UN_KNOW(99999, "未知异常！"),

@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 转义和反转义工具类
  *
- * @author youfang
+ * @author luwl
  */
 public class EscapeUtil {
     public static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)";

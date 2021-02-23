@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.servlet.DispatcherType;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/13]
  **/
 @Configuration

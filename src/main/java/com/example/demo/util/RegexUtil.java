@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * 正则表达式校验工具类
  *
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020年07月23日]
  */
 public class RegexUtil {
@@ -158,6 +158,7 @@ public class RegexUtil {
         }
         return phoneNumber.matches(REGEX_MOBILEPHONE);
     }
+
     /**
      * 判断是否是固话号码
      *
@@ -177,7 +178,7 @@ public class RegexUtil {
      * @param phoneNumber 号码
      * @return boolean
      */
-    public static boolean isTelephoneOrMobilephone(String phoneNumber){
+    public static boolean isTelephoneOrMobilephone(String phoneNumber) {
         return isMobilePhone(phoneNumber) || isTelephone(phoneNumber);
     }
 
@@ -234,6 +235,7 @@ public class RegexUtil {
         }
         return str.matches(REGEX_NUMBER_LETTER_COMBINATION);
     }
+
     /**
      * 是字母和数字和符号组合
      *
@@ -260,13 +262,14 @@ public class RegexUtil {
         Matcher m = REGEX_DATE_TIME_STR.matcher(dateTimeStr);
         return m.find();
     }
+
     /**
      * 是时间字符串
      *
      * @param timeStr 时间 format with "hh:mm:ss"
      * @return boolean
      */
-    public static boolean isTime(String timeStr){
+    public static boolean isTime(String timeStr) {
         if (StringUtils.isEmpty(timeStr)) {
             return false;
         }

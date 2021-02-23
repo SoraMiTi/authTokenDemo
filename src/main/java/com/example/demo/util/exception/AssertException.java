@@ -1,7 +1,7 @@
 package com.example.demo.util.exception;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020-7-11 下午 04:12]
  **/
 public class AssertException extends RuntimeException {

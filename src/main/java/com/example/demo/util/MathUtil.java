@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.OptionalDouble;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/4/3]
  **/
 public class MathUtil {
@@ -68,6 +68,7 @@ public class MathUtil {
      * createMaxLong(6)     = 999999
      * createMaxLong(8)     = 99999999
      * </pre>
+     *
      * @param length 长度 <=18
      * @return long
      */
@@ -90,13 +91,13 @@ public class MathUtil {
 
     /**
      * 计算环比/同比 方法都是一样的，就是上期值不一样
-     *
+     * <p>
      * QoQ计算环比（quarter on quarter）
      * YoY计算同比（year-over-year）
-     *
+     * <p>
      * 与历史同时期比较，例如2005年7月份与2004年7月份相比称其为同比；
      * 与上一统计段比较，例如2005年7月份与2005年6月份相比较称其为环比。
-     *
+     * <p>
      * 环比有环比增长速度和环比发展速度两种方法。
      * 环比即与上期的数量作比较。
      * 环比增长速度=（本期数－上期数）÷上期数×100%，反映本期比上期增长了多少。
@@ -111,7 +112,7 @@ public class MathUtil {
      */
     public static Integer calculateQy(Integer currentNum, Integer lastNum) {
         BigDecimal result = new BigDecimal(currentNum).subtract(new BigDecimal(lastNum));
-        if (lastNum == 0){
+        if (lastNum == 0) {
             return 0;
         }
         BigDecimal multiply = result.divide(new BigDecimal(lastNum), 2, RoundingMode.UP).multiply(HUNDRED);

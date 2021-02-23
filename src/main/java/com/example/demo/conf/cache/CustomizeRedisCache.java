@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/1]
  **/
 public class CustomizeRedisCache extends RedisCache {
@@ -69,7 +69,7 @@ public class CustomizeRedisCache extends RedisCache {
             //插入时添加时间
             redisCacheWriter.put(finalName, serializeCacheKey(createCacheKey(key)), serializeCacheValue(cacheValue), Duration.ofSeconds(ttl));
 
-        }else {
+        } else {
             //原来逻辑处理
             super.put(key, value);
         }

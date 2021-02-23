@@ -15,10 +15,11 @@ import java.util.List;
 
 /**
  * 单独配置：Cors Filter
- *
+ * <p>
  * 使用CorsFilter解决解决跨域
  * 参考：{@link org.springframework.web.filter.CorsFilter}
- * @author youfang
+ *
+ * @author luwl
  * @version [1.0.0, 2020/7/28]
  **/
 @Component

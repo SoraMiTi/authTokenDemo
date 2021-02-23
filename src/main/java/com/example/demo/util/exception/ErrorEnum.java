@@ -1,7 +1,7 @@
 package com.example.demo.util.exception;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/5/13]
  **/
 public interface ErrorEnum<C extends Enum<?>> {

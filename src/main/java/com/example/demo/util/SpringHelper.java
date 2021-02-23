@@ -6,7 +6,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/28]
  **/
 @Component
@@ -15,6 +15,7 @@ public class SpringHelper implements BeanFactoryPostProcessor {
 
     /**
      * 获取 Spring Bean工厂
+     *
      * @return beanFactory
      */
     public static ConfigurableListableBeanFactory getBeanFactory() {
@@ -23,7 +24,7 @@ public class SpringHelper implements BeanFactoryPostProcessor {
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-       SpringHelper.beanFactory = beanFactory;
+        SpringHelper.beanFactory = beanFactory;
     }
 
     /**

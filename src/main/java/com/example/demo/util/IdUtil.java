@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.text.DecimalFormat;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020-7-24 下午 08:04]
  **/
 @Component
@@ -21,12 +21,14 @@ public class IdUtil {
      * <pre>
      *  getDatePrefix4BitId("RK")    =   RK2020072700001
      * </pre>
+     *
      * @param prefix 前缀
      * @return 单号
      */
     public String getDatePrefixReceiptNo(String prefix) {
         return getDatePrefixId(prefix, 5);
     }
+
     /**
      * 从Redis中获取ID
      * <p>

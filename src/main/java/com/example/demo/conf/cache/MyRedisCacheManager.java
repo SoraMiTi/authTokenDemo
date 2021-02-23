@@ -8,11 +8,12 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 /**
  * 自定义缓存管理器，支持自定义过期时间：
  * <code>
- *     @Cacheable(value="sys:demo#100", key="#id") 100S过期
- *     @Cacheable(value="sys:demo#-1", key="#id")  永不过期
- * </code>
- * @author youfang
+ *
+ * @author luwl
  * @version [1.0.0, 2020/7/1]
+ * @Cacheable(value="sys:demo#100", key="#id") 100S过期
+ * @Cacheable(value="sys:demo#-1", key="#id")  永不过期
+ * </code>
  **/
 public class MyRedisCacheManager extends RedisCacheManager {
     private final RedisCacheWriter cacheWriter;

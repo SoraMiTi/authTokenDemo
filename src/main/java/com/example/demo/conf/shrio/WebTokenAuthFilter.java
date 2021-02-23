@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * WebToken授权Filter
  *
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/28]
  */
 @Slf4j

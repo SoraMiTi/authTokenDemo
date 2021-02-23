@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/8]
  **/
 public class StaticInfo {
@@ -80,25 +80,25 @@ public class StaticInfo {
         ACTION_URL_TL.set(action);
     }
 
-    public static void setActionApiOperation(String methodInfo, String apiRemark){
+    public static void setActionApiOperation(String methodInfo, String apiRemark) {
         ACTION_API_OPERATION_TL.set(new String[]{methodInfo, apiRemark});
     }
 
-    public static String getActionApiMethodInfo(){
+    public static String getActionApiMethodInfo() {
         String[] values = ACTION_API_OPERATION_TL.get();
-        if (values != null && values.length == 2){
+        if (values != null && values.length == 2) {
             return values[0];
         }
         return "";
     }
 
-    public static void clearActionApiMethodInfo(){
+    public static void clearActionApiMethodInfo() {
         ACTION_API_OPERATION_TL.remove();
     }
 
-    public static String getActionApiOperationValue(){
+    public static String getActionApiOperationValue() {
         String[] values = ACTION_API_OPERATION_TL.get();
-        if (values != null && values.length == 2){
+        if (values != null && values.length == 2) {
             return values[1];
         }
         return "";
@@ -116,9 +116,10 @@ public class StaticInfo {
         REQUEST_TIMESTAMP_TL.set(timeStamp);
     }
 
-    public static void clearRequestTimeStamp(){
+    public static void clearRequestTimeStamp() {
         REQUEST_TIMESTAMP_TL.remove();
     }
+
     public static Result<?> getExceptionResult() {
         return EXCEPTION_RESULT_TL.get();
     }
@@ -127,11 +128,11 @@ public class StaticInfo {
         EXCEPTION_RESULT_TL.set(exceptionResult);
     }
 
-    public static void clearExceptionResult(){
+    public static void clearExceptionResult() {
         EXCEPTION_RESULT_TL.remove();
     }
 
-    public static Map<String, Object> getParamsMap(){
+    public static Map<String, Object> getParamsMap() {
         return PARAMS_TL.get();
     }
 

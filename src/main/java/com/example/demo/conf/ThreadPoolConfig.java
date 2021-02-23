@@ -16,23 +16,31 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * 线程池配置
  * spring通过 TaskExecutor来实现多线程并发编程。使用ThreadPoolExecutor可实现基于线程池的TaskExecutor
- *
+ * <p>
  * 使用@EnableAsync开启对异步任务的支持，并通过在实际执行bean方法中使用@Async注解来声明一个异步任务
  *
- * @author youfang
+ * @author luwl
  * @date 2020/09/23
  */
 @Slf4j
 @Configuration
 @EnableAsync
 public class ThreadPoolConfig extends AsyncConfigurerSupport {
-    /** 核心线程池大小 */
+    /**
+     * 核心线程池大小
+     */
     private static final int CORE_POOL_SIZE = 8;
-    /** 最大可创建的线程数 */
+    /**
+     * 最大可创建的线程数
+     */
     private static final int MAX_POOL_SIZE = 20;
-    /** 队列最大长度 */
+    /**
+     * 队列最大长度
+     */
     private static final int QUEUE_CAPACITY = 10000;
-    /** 线程池维护线程所允许的空闲时间（单位：秒） */
+    /**
+     * 线程池维护线程所允许的空闲时间（单位：秒）
+     */
     private static final int KEEP_ALIVE_SECONDS = 300;
 
     /**

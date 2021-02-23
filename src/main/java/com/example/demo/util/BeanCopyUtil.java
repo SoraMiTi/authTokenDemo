@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  * Bean 之间的拷贝
+ *
  * @author acyou
  */
 public class BeanCopyUtil {
@@ -45,7 +46,7 @@ public class BeanCopyUtil {
         BeanUtils.copyProperties(source, target);
     }
 
-    public static <E> E copyMap(Map m,Class<E> clz){
+    public static <E> E copyMap(Map m, Class<E> clz) {
         BeanMap beanMap = null;
         try {
             E e = clz.newInstance();
@@ -81,7 +82,7 @@ public class BeanCopyUtil {
      * @param target      目标
      * @param destination 目的
      */
-    public static <M> void merge(M target, M destination)  {
+    public static <M> void merge(M target, M destination) {
         merge(target, destination, false);
     }
 
@@ -98,13 +99,13 @@ public class BeanCopyUtil {
             for (PropertyDescriptor descriptor : beanInfo.getPropertyDescriptors()) {
                 if (descriptor.getWriteMethod() != null) {
                     Object defaultValue = descriptor.getReadMethod().invoke(destination);
-                    if (defaultValue == null && !nullCoverTarget){
+                    if (defaultValue == null && !nullCoverTarget) {
                         continue;
                     }
                     descriptor.getWriteMethod().invoke(target, defaultValue);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

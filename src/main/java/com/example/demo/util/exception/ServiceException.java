@@ -23,7 +23,7 @@ public class ServiceException extends RuntimeException {
         this.result = result;
     }
 
-    public ServiceException(ErrorEnum<?> errorEnum){
+    public ServiceException(ErrorEnum<?> errorEnum) {
         super(errorEnum.message());
         this.result = Result.error(errorEnum.code(), errorEnum.message());
     }
@@ -55,10 +55,11 @@ public class ServiceException extends RuntimeException {
      *     example:
      *     throw new ServiceException("hello, i'm {}, age {}.", "james", 10); message-> hello, i'm james, age 10.
      * </pre>
+     *
      * @param formatPattern 格式化模板字符串
-     * @param args 参数
+     * @param args          参数
      */
-    public ServiceException(String formatPattern, Object... args){
+    public ServiceException(String formatPattern, Object... args) {
         super(MessageFormatter.arrayFormat(formatPattern, args).getMessage());
     }
 

@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 /**
  * 防止XSS攻击的过滤器
  *
- * @author youfang
+ * @author luwl
  */
 public class XssFilter implements Filter {
     /**
@@ -58,7 +58,7 @@ public class XssFilter implements Filter {
     private boolean handleExcludeURL(HttpServletRequest request, HttpServletResponse response) {
         //过滤webSocket
         String requestURI = request.getRequestURI();
-        if(requestURI.contains("socket")){
+        if (requestURI.contains("socket")) {
             return true;
         }
         if (!enabled) {

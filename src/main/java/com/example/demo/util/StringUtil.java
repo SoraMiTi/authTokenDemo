@@ -10,15 +10,18 @@ import java.util.Set;
 /**
  * 补充 String 相关方法
  *
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020-7-24 下午 09:31]
  **/
 public class StringUtil {
     public static final String SPACE = " ";
     public static final String EMPTY = "";
     public static final String COMMA = ",";
-    /** 换行 */
+    /**
+     * 换行
+     */
     public static final String NEW_LINE = "\r\n";
+
     /**
      * 拼接重复字符到指定长度
      *
@@ -27,6 +30,7 @@ public class StringUtil {
      * StringUtil.concatLengthChar(4, '0')     = 0000
      * StringUtil.concatLengthChar(5, '8')     = 88888
      * </pre>
+     *
      * @param length    长度
      * @param character 字符
      * @return {@link String}
@@ -45,7 +49,7 @@ public class StringUtil {
      * @param value 价值
      * @return {@link String}
      */
-    public static String likeLR(String value){
+    public static String likeLR(String value) {
         return "%" + value + "%";
     }
 
@@ -69,11 +73,12 @@ public class StringUtil {
      *         System.out.println(formatTemplate(templateStr, paramMap));//王二小今年3啦！
      *
      * </pre>
+     *
      * @param templateStr 模板字符串
-     * @param paramsMap 参数
+     * @param paramsMap   参数
      * @return 格式化后内容
      */
-    public static String formatTemplate(String templateStr, Map<String, String> paramsMap){
+    public static String formatTemplate(String templateStr, Map<String, String> paramsMap) {
         String templateContent = templateStr;
         Set<Map.Entry<String, String>> entrySet = paramsMap.entrySet();
         for (Map.Entry<String, String> entry : entrySet) {
@@ -108,8 +113,8 @@ public class StringUtil {
      * @param str str
      * @return {@link String}
      */
-    public static String nullAsDash(String str){
-        if (str == null){
+    public static String nullAsDash(String str) {
+        if (str == null) {
             return "-";
         }
         return str;
@@ -127,16 +132,17 @@ public class StringUtil {
 
     /**
      * 判断list是否为空对象
+     *
      * @param list
      * @return 是否是空
      */
-    public static boolean isListNull(List<?> list){
-        return list==null||list.isEmpty()||list.size()==0;
+    public static boolean isListNull(List<?> list) {
+        return list == null || list.isEmpty() || list.size() == 0;
     }
 
 
     public static void main(String[] args) {
-        String templateStr= "{姓名}今年{岁}啦！";
+        String templateStr = "{姓名}今年{岁}啦！";
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("姓名", "王二小");
         paramMap.put("岁", "3");

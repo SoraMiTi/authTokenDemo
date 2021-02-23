@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 /**
  * 登录用户信息
- * @author youfang
+ *
+ * @author luwl
  * @version [1.0.0, 2020/6/30]
  **/
 public class LoginUser implements Serializable {
@@ -17,23 +18,23 @@ public class LoginUser implements Serializable {
     /**
      * 用户id
      */
-    private Long	userId;
+    private Long userId;
     /**
      * 用户真实姓名
      */
-    private String	userName;
+    private String userName;
     /**
      * 性别 1男 2女
      */
-    private Integer	sex;
+    private Integer sex;
     /**
      * 用户手机号
      */
-    private String	phone;
+    private String phone;
     /**
      * 状态 0禁用 1正常
      */
-    private Integer	status;
+    private Integer status;
 
     public String getToken() {
         return token;

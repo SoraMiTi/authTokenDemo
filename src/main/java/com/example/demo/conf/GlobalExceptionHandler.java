@@ -30,20 +30,25 @@ import java.io.PrintWriter;
 public class GlobalExceptionHandler {
 
 
-    /** method 不支持异常*/
+    /**
+     * method 不支持异常
+     */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseBody
-    public Result<Object> handleHttpRequestMethodNotSupportedException(HttpServletRequest request, Exception e){
+    public Result<Object> handleHttpRequestMethodNotSupportedException(HttpServletRequest request, Exception e) {
         Result<Object> resultInfo = Result.error();
         //org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
         resultInfo.setMessage(e.getMessage());
         StaticInfo.setExceptionResult(resultInfo);
         return resultInfo;
     }
-    /** 请求参数转换错误 (RequestBody 接收的字符串转换不了Bean) */
+
+    /**
+     * 请求参数转换错误 (RequestBody 接收的字符串转换不了Bean)
+     */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseBody
-    public Result<Object> handleHttpMessageNotReadableException(HttpServletRequest request, Exception e){
+    public Result<Object> handleHttpMessageNotReadableException(HttpServletRequest request, Exception e) {
         Result<Object> resultInfo = Result.error();
         //org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): ...
         resultInfo.setMessage("请求参数格式错误，请检查！");
@@ -52,10 +57,12 @@ public class GlobalExceptionHandler {
         return resultInfo;
     }
 
-    /** 断言异常 */
+    /**
+     * 断言异常
+     */
     @ExceptionHandler(AssertException.class)
     @ResponseBody
-    public Result<Object> handleAssertException(HttpServletRequest request, Exception e){
+    public Result<Object> handleAssertException(HttpServletRequest request, Exception e) {
         Result<Object> resultInfo = Result.error();
         resultInfo.setMessage(e.getMessage());
         StaticInfo.setExceptionResult(resultInfo);
@@ -63,9 +70,11 @@ public class GlobalExceptionHandler {
     }
 
 
-    /** Controller 缺少`@RequestParam`参数：
-     *  默认不能为空，如果想为空可以使用：`@RequestParam(required = false)`
-     * org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'thirdAccountType' is not present */
+    /**
+     * Controller 缺少`@RequestParam`参数：
+     * 默认不能为空，如果想为空可以使用：`@RequestParam(required = false)`
+     * org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'thirdAccountType' is not present
+     */
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseBody
     public Result<Object> handleMissingServletRequestParameterException(HttpServletRequest request, Exception e) {
@@ -76,16 +85,18 @@ public class GlobalExceptionHandler {
         return resultInfo;
     }
 
-    /**处理自定义服务异常*/
+    /**
+     * 处理自定义服务异常
+     */
     @ExceptionHandler(ServiceException.class)
     @ResponseBody
     public Result<Object> handleServiceException(HttpServletRequest request, Exception e) {
         Result<Object> resultInfo = Result.error();
-        if (e instanceof ServiceException){
+        if (e instanceof ServiceException) {
             ServiceException serviceException = (ServiceException) e;
-            if (serviceException.getResult() != null){
+            if (serviceException.getResult() != null) {
                 return serviceException.getResult();
-            }else {
+            } else {
                 resultInfo.setMessage(e.getMessage());
                 printErrorStackTraceInResultData(e, resultInfo);
             }
@@ -94,7 +105,9 @@ public class GlobalExceptionHandler {
         return resultInfo;
     }
 
-    /** 上面只能捕获RootCause是自身的，对RootCause不是自身的在这里判断。 **/
+    /**
+     * 上面只能捕获RootCause是自身的，对RootCause不是自身的在这里判断。
+     **/
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public Result<Object> handleException(HttpServletRequest request, Exception e) {
@@ -114,9 +127,9 @@ public class GlobalExceptionHandler {
      * @param e          e
      * @param resultInfo 返回信息
      */
-    private void printErrorStackTraceInResultData(Exception e, Result<Object> resultInfo){
+    private void printErrorStackTraceInResultData(Exception e, Result<Object> resultInfo) {
         //DEBUG级别才：未知异常打印堆栈信息到data中。
-        if (log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             try {
                 ByteArrayOutputStream buf = new ByteArrayOutputStream();
                 e.printStackTrace(new PrintWriter(buf, true));

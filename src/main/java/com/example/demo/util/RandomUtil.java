@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/28]
  **/
 public class RandomUtil {
@@ -41,6 +41,7 @@ public class RandomUtil {
     public static String createRandomStr(int length) {
         return createRandom(false, length);
     }
+
     /**
      * 生成指定长度的随机数字
      *
@@ -71,6 +72,7 @@ public class RandomUtil {
 
 
     private static final String[] TEL_FIRST = "134,135,136,137,138,139,150,151,152,157,158,159,130,131,132,155,156,133,153".split(",");
+
     /**
      * 随机生成手机号码
      */
@@ -132,7 +134,7 @@ public class RandomUtil {
      */
     public static String nextInt(int value, int several) {
         String format = "%0" + several + "d";
-        return String.format(format,RandomUtil.nextInt(value));
+        return String.format(format, RandomUtil.nextInt(value));
     }
 
     /**

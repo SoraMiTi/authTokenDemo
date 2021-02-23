@@ -5,7 +5,8 @@ import com.example.demo.framework.model.LoginUser;
 
 /**
  * 用户token
- * @author youfang
+ *
+ * @author luwl
  * @version [1.0.0, 2021/1/23]
  **/
 public interface UserTokenGenerator {

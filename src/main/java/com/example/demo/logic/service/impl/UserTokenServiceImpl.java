@@ -31,7 +31,7 @@ public class UserTokenServiceImpl implements UserTokenService {
             String userId = redisUtils.get(RedisKeyConstant.USER_LOGIN_TOKEN + token);
             String loginStr = redisUtils.get(RedisKeyConstant.USER_LOGIN_INFO + userId);
             LoginUser loginUser = FastJsonUtil.parseObject(loginStr, LoginUser.class);
-            if (loginUser != null){
+            if (loginUser != null) {
                 loginUser.setToken(token);
                 return loginUser;
             }

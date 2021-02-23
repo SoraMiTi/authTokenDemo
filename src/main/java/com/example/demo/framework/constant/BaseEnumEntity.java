@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author youfang
+ * @author luwl
  * @version [1.0.0, 2020/7/28]
  **/
 public abstract class BaseEnumEntity {
@@ -59,6 +59,7 @@ public abstract class BaseEnumEntity {
         }
         return null;
     }
+
     /**
      * 获取字段名
      * <pre>

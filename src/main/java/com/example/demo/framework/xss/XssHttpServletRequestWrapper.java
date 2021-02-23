@@ -1,7 +1,6 @@
 package com.example.demo.framework.xss;
 
 
-
 import com.example.demo.framework.html.EscapeUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 /**
  * XSS过滤处理
  *
- * @author youfang
+ * @author luwl
  */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
